@@ -12,7 +12,7 @@ public class RandomGenerator {
         int raining = new Random().nextInt(100)+1;
         Race.isRaining = raining <= 30;
     }
-    //TODO can a truck stack its breakdown ?
+
     static boolean truckBreakdown(){
         int breakdown = new Random().nextInt(100)+1;
         return breakdown < 6;

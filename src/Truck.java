@@ -6,7 +6,7 @@ import java.util.List;
 public class Truck {
     private int distanceTraveled;
     private int normalSpeed = 100;
-    private String truckName;
+    private String name;
     private int breakdownCounter = 0;
     static List<String> truckNames = new ArrayList<>();
     // Truck drivers are boring. They call all their trucks a random number between 0 and 1000.
@@ -33,7 +33,7 @@ public class Truck {
     }
 
     public String getTruckName(){
-        return this.truckName;
+        return this.name;
     }
 
     public void setName(){
@@ -42,8 +42,8 @@ public class Truck {
             randomNameNumber = RandomGenerator.randomTruckName();
         }while (truckNames.contains(String.valueOf(randomNameNumber)));
 
-        this.truckName = String.valueOf(randomNameNumber);
-        truckNames.add(this.truckName);
+        this.name = String.valueOf(randomNameNumber);
+        truckNames.add(this.name);
     }
 
 

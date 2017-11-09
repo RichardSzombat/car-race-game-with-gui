@@ -12,10 +12,25 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Race extends Application {
+public class Race  {
     static boolean isRaining ;// 30% chance of rain every hour
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
     private List<Car> cars = new ArrayList<>();
+
+    public List<Motorcycle> getMotors() {
+        return motors;
+    }
+
     private List<Motorcycle> motors = new ArrayList<>();
+
+    public List<Truck> getTrucks() {
+        return trucks;
+    }
+
     private List<Truck> trucks = new ArrayList<>();
     private Car car;
     private Motorcycle moto;
@@ -125,61 +140,4 @@ public class Race extends Application {
 
 
 
-    public static void main(String[] args) {
-
-        launch(args);
-        // write your code here
-
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Car race");
-
-        //GridPane with 10px padding around edge
-        GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(8);
-        grid.setHgap(10);
-
-
-        Text text = new Text("Click the button to start a new race");
-        GridPane.setConstraints(text,0,3);
-
-        Button startNewRace = new Button("New Race");
-        GridPane.setConstraints(startNewRace, 0, 4);
-
-        TextField numberOfVehicles = new TextField();
-        numberOfVehicles.setPromptText("Enter number of vehicles");
-        GridPane.setConstraints(numberOfVehicles,0,5);
-
-        Text cars = new Text();
-        GridPane.setConstraints(cars,0,7);
-
-        Text trucks = new Text();
-        GridPane.setConstraints(trucks,1,7);
-
-        Text motorcycles = new Text();
-        GridPane.setConstraints(motorcycles,2,7);
-
-        startNewRace.setOnAction(event -> {
-            Race race = new Race();
-            race.setNumberOfVehicles(Integer.parseInt((numberOfVehicles.getText())));
-            race.createVehicles();
-            Car.setSpeedLimit(70);
-            race.simulateRace();
-            race.printResults();
-            cars.setText(Race.carResults);
-            trucks.setText(Race.truckResults);
-            motorcycles.setText(Race.motorcycleResults);
-        });
-
-
-        //Add everything to grid
-        grid.getChildren().addAll(startNewRace,text,cars,trucks,motorcycles,numberOfVehicles);
-
-        Scene scene = new Scene(grid, 700, 700);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
 }
