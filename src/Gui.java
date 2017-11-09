@@ -12,9 +12,9 @@ import javafx.scene.control.*;
 
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
+
 import javafx.stage.Stage;
 
 
@@ -39,6 +39,10 @@ public class Gui extends Application {
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
         window.setTitle("Car race");
+        window.setMinWidth(700);
+        window.setMaxWidth(800);
+        window.setMinHeight(600);
+        window.setMaxHeight(800);
 
         Button startNewRace = new Button("Start new race");
         CheckBox carSelect = new CheckBox("Cars");
@@ -48,9 +52,22 @@ public class Gui extends Application {
         motoSelect.setSelected(true);
         truckSelect.setSelected(true);
 
+
+        Slider slider = new Slider();
+        slider.setMin(0);
+        slider.setMax(100);
+        slider.setValue(40);
+        slider.setShowTickLabels(true);
+        slider.setShowTickMarks(true);
+        slider.setMajorTickUnit(50);
+        slider.setMinorTickCount(5);
+        slider.setBlockIncrement(10);
+
+
+
         VBox leftMenu = new VBox(10);
         leftMenu.setPadding(new Insets(20,20,20,20));
-        leftMenu.getChildren().addAll(startNewRace,carSelect,motoSelect,truckSelect);
+        leftMenu.getChildren().addAll(startNewRace,carSelect,motoSelect,truckSelect,slider);
 
 
         BorderPane borderPane = new BorderPane();
@@ -66,8 +83,10 @@ public class Gui extends Application {
         distanceColumn.setCellValueFactory(new PropertyValueFactory<>("distanceTraveled"));
 
         table = new TableView<>();
+        table.setMinWidth(350);
         table.setMaxWidth(400);
         table.setMinHeight(600);
+
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         VBox content = new VBox();
@@ -78,19 +97,24 @@ public class Gui extends Application {
         startNewRace.setOnAction(event -> {
             Race race = new Race();
             race.setNumberOfVehicles(10);
-            race.createVehicles(carSelect.isSelected(),motoSelect.isSelected(),truckSelect.isSelected());
-            Car.setSpeedLimit(70);
-            race.simulateRace();
-            race.printResults();
-            table.setItems(getVehicle(race));
+            if (carSelect.isSelected() || motoSelect.isSelected() ||truckSelect.isSelected() ) {
+
+                race.createVehicles(carSelect.isSelected(),motoSelect.isSelected(),truckSelect.isSelected());
+                Car.setSpeedLimit(70);
+                race.simulateRace();
+                race.printResults();
+                table.setItems(getVehicle(race));
+            }else {
+                AlertBox.display("Nothing selected","Select something");
+
+            }
         });
 
         table.getColumns().addAll(nameColumn, distanceColumn);
         Scene scene = new Scene(borderPane, 700, 700);
         scene.getStylesheets().add("myStyle.css");
         window.setScene(scene);
-        window.setMinWidth(200);
-        window.setMaxWidth(800);
+
         window.show();
     }
 }
