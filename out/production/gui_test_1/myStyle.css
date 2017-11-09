@@ -1,11 +1,20 @@
 .root {
-    -fx-background-color: #383838;
+    -fx-background-color: #F5F0F6;
     -fx-font-size: 11pt;
-    -fx-text-fill:white;
+    -fx-text-fill: #1C1C1C;
 }
 
 .check-box {
-    -fx-text-fill: white;
+    -fx-text-fill: #1C1C1C;
+}
+
+.button {
+    -fx-background-color: #00487C;
+    -fx-text-fill: #F5F0F6;
+}
+
+.table-view {
+    -fx-background-color: #DADDD8;
 }
 /*
 .table-view{

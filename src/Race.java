@@ -37,14 +37,21 @@ public class Race  {
     }
 
 
-    public void createVehicles(){
+    public void createVehicles(boolean isCarChecked, boolean isMotoChecked, boolean isTruckChecked){
         for (int i = 0; i <numberOfVehicles ; i++){
+            if (isCarChecked){
             car = new Car();
-            truck = new Truck();
-            motorcycle = new Motorcycle();
             vehicle.add(car);
-            vehicle.add(truck);
+            }
+            if (isMotoChecked){
+            motorcycle = new Motorcycle();
             vehicle.add(motorcycle);
+            }
+            if (isTruckChecked){
+            truck = new Truck();
+            vehicle.add(truck);
+            }
+
         }
 
     }

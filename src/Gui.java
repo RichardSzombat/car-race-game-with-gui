@@ -22,12 +22,8 @@ public class Gui extends Application {
     Stage window;
     TableView<Vehicle> table;
 
-
     public static void main(String[] args) {
-
         launch(args);
-        // write your code here
-
     }
 
     public ObservableList<Vehicle> getVehicle(Race race){
@@ -35,14 +31,9 @@ public class Gui extends Application {
         ObservableList<Vehicle> results = FXCollections.observableArrayList();
         for (int i = 0 ; i < vehicle.size();i++){
         results.add(vehicle.get(i));
-
         }
-
         return results;
     }
-
-
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -50,15 +41,12 @@ public class Gui extends Application {
         window.setTitle("Car race");
 
         Button startNewRace = new Button("Start new race");
-        // startNewRace button is going to set isCarSelected variable with .isSelected()
         CheckBox carSelect = new CheckBox("Cars");
         CheckBox motoSelect = new CheckBox("Motorcycles");
         CheckBox truckSelect = new CheckBox("Trucks");
         carSelect.setSelected(true);
         motoSelect.setSelected(true);
         truckSelect.setSelected(true);
-
-
 
         VBox leftMenu = new VBox(10);
         leftMenu.setPadding(new Insets(20,20,20,20));
@@ -67,48 +55,37 @@ public class Gui extends Application {
 
         BorderPane borderPane = new BorderPane();
         borderPane.setLeft(leftMenu);
-        //Name column
+
         TableColumn<Vehicle, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setMinWidth(200);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-        //Price column
-        TableColumn<Vehicle, Integer> priceColumn = new TableColumn<>("Distance");
-        priceColumn.setMinWidth(100);
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("distanceTraveled"));
 
-
+        TableColumn<Vehicle, Integer> distanceColumn = new TableColumn<>("Distance");
+        distanceColumn.setMinWidth(100);
+        distanceColumn.setCellValueFactory(new PropertyValueFactory<>("distanceTraveled"));
 
         table = new TableView<>();
         table.setMaxWidth(400);
         table.setMinHeight(600);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+        VBox content = new VBox();
+        content.getChildren().addAll(table);
 
-
-        VBox vBox = new VBox();
-        vBox.getChildren().addAll(table);
-
-        borderPane.setCenter(vBox);
-
+        borderPane.setCenter(content);
 
         startNewRace.setOnAction(event -> {
             Race race = new Race();
             race.setNumberOfVehicles(10);
-            race.createVehicles();
+            race.createVehicles(carSelect.isSelected(),motoSelect.isSelected(),truckSelect.isSelected());
             Car.setSpeedLimit(70);
             race.simulateRace();
             race.printResults();
             table.setItems(getVehicle(race));
-
-
-
         });
 
-            table.getColumns().addAll(nameColumn, priceColumn);
-
-
-
+        table.getColumns().addAll(nameColumn, distanceColumn);
         Scene scene = new Scene(borderPane, 700, 700);
         scene.getStylesheets().add("myStyle.css");
         window.setScene(scene);
