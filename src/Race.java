@@ -1,36 +1,28 @@
-
-
-import java.util.ArrayList;
 import java.util.List;
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 public class Race  {
-    static boolean isRaining ;// 30% chance of rain every hour
+    static boolean isRaining ;
 
 
     public List<Vehicle> getVehicle() {
         return vehicle;
     }
 
-    private List<Vehicle> vehicle = new ArrayList<>();
+    private ObservableList<Vehicle> vehicle = FXCollections.observableArrayList();
+
+    public ObservableList<Vehicle> getVehicles(){
+        return this.vehicle;
+    }
 
     private Car car;
     private Motorcycle motorcycle;
     private Truck truck;
 
-    private int numberOfVehicles = 10;
+    private int numberOfVehicles ;
 
-    public int getNumberOfVehicles() {
-        return this.numberOfVehicles;
-    }
 
     public void setNumberOfVehicles(int numberOfVehicles) {
         this.numberOfVehicles = numberOfVehicles;
@@ -75,11 +67,4 @@ public class Race  {
 
         }
     }
-
-
-
-
-
-
-
 }

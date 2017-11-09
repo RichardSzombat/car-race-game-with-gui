@@ -2,15 +2,11 @@
 
 public class Car extends Vehicle {
 
-
     private int carBreakCounter = 0;
-
     public static int getSpeedLimit() {
         return Car.speedLimit;
     }
-
     private static int speedLimit;
-
     public int getCarBreakCounter() {
         return this.carBreakCounter;
     }
@@ -28,7 +24,6 @@ public class Car extends Vehicle {
             this.setDistanceTraveled(this.getDistanceTraveled() + getNormalSpeed());
         }
     }
-
 
     public Car() {
         this.setName(RandomGenerator.randomCarName());

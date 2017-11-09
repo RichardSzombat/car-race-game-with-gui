@@ -1,20 +1,10 @@
-
-import java.util.ArrayList;
-import java.util.List;
-
-
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-
 import javafx.scene.layout.VBox;
-
 import javafx.stage.Stage;
 
 
@@ -26,14 +16,6 @@ public class Gui extends Application {
         launch(args);
     }
 
-    public ObservableList<Vehicle> getVehicle(Race race){
-        List<Vehicle> vehicle = race.getVehicle();
-        ObservableList<Vehicle> results = FXCollections.observableArrayList();
-        for (int i = 0 ; i < vehicle.size();i++){
-        results.add(vehicle.get(i));
-        }
-        return results;
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -52,22 +34,13 @@ public class Gui extends Application {
         motoSelect.setSelected(true);
         truckSelect.setSelected(true);
 
-
-        Slider slider = new Slider();
-        slider.setMin(0);
-        slider.setMax(100);
-        slider.setValue(40);
-        slider.setShowTickLabels(true);
-        slider.setShowTickMarks(true);
-        slider.setMajorTickUnit(50);
-        slider.setMinorTickCount(5);
-        slider.setBlockIncrement(10);
-
+        TextField numberOfVehicles = new TextField();
+        numberOfVehicles.setPromptText("Enter the number of vehicles (int)");
 
 
         VBox leftMenu = new VBox(10);
         leftMenu.setPadding(new Insets(20,20,20,20));
-        leftMenu.getChildren().addAll(startNewRace,carSelect,motoSelect,truckSelect,slider);
+        leftMenu.getChildren().addAll(startNewRace,carSelect,motoSelect,truckSelect,numberOfVehicles);
 
 
         BorderPane borderPane = new BorderPane();
@@ -96,14 +69,19 @@ public class Gui extends Application {
 
         startNewRace.setOnAction(event -> {
             Race race = new Race();
-            race.setNumberOfVehicles(10);
-            if (carSelect.isSelected() || motoSelect.isSelected() ||truckSelect.isSelected() ) {
 
-                race.createVehicles(carSelect.isSelected(),motoSelect.isSelected(),truckSelect.isSelected());
-                Car.setSpeedLimit(70);
-                race.simulateRace();
-                race.printResults();
-                table.setItems(getVehicle(race));
+            if (carSelect.isSelected() || motoSelect.isSelected() ||truckSelect.isSelected() ) {
+                if (validateInput(numberOfVehicles)){
+                    race.setNumberOfVehicles(Integer.parseInt(numberOfVehicles.getText()));
+                    race.createVehicles(carSelect.isSelected(),motoSelect.isSelected(),truckSelect.isSelected());
+                    Car.setSpeedLimit(70);
+                    race.simulateRace();
+                    race.printResults();
+                    table.setItems(race.getVehicles());
+                }else{
+                    AlertBox.display("Invalid input","Enter an integer between 1 - 99");
+                    numberOfVehicles.clear();
+                }
             }else {
                 AlertBox.display("Nothing selected","Select something");
 
@@ -114,7 +92,19 @@ public class Gui extends Application {
         Scene scene = new Scene(borderPane, 700, 700);
         scene.getStylesheets().add("myStyle.css");
         window.setScene(scene);
-
         window.show();
+    }
+
+    public boolean validateInput(TextField input){
+        int number ;
+        try{
+            number = Integer.parseInt(input.getText());
+                if (number < 0 || number >99){
+                    return false;
+                }
+            return true;
+        }catch (NumberFormatException e){
+            return false;
+        }
     }
 }
