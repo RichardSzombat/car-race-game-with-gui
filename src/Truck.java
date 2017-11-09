@@ -3,18 +3,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 // speed: 100km/h. 5% chance of breaking down for 2 hours.
-public class Truck {
-    private int distanceTraveled;
-    private int normalSpeed = 100;
-    private String name;
+public class Truck extends Vehicle {
+
+
     private int breakdownCounter = 0;
     static List<String> truckNames = new ArrayList<>();
     // Truck drivers are boring. They call all their trucks a random number between 0 and 1000.
     private int breakdownTurnsLeft = 0; // holds how long its still broken down.
 
-    public int getDistanceTraveled(){
-        return this.distanceTraveled;
-    }
+
 
     public int getBreakdownCounter() {
         return breakdownCounter;
@@ -32,9 +29,7 @@ public class Truck {
         this.breakdownTurnsLeft = breakdownHours;
     }
 
-    public String getTruckName(){
-        return this.name;
-    }
+
 
     public void setName(){
         int randomNameNumber;
@@ -42,8 +37,8 @@ public class Truck {
             randomNameNumber = RandomGenerator.randomTruckName();
         }while (truckNames.contains(String.valueOf(randomNameNumber)));
 
-        this.name = String.valueOf(randomNameNumber);
-        truckNames.add(this.name);
+        this.setName(String.valueOf(randomNameNumber));
+        truckNames.add(this.getName());
     }
 
 
@@ -51,7 +46,7 @@ public class Truck {
     public void moveForAnHour(){
         if (this.getBreakdownTurnsLeft()==0){
             if (!(RandomGenerator.truckBreakdown())){
-                this.distanceTraveled += this.normalSpeed;
+                this.setDistanceTraveled(this.getDistanceTraveled()+this.getNormalSpeed());
             }else{
                 this.setBreakdownTurnsLeft(2);
                 this.increaseBreakdownCounter();
@@ -64,7 +59,8 @@ public class Truck {
 
     public Truck(){
         this.setName();
-        System.out.println(String.format("%s truck has been created",this.getTruckName()));
+        this.setNormalSpeed(100);
+        System.out.println(String.format("%s truck has been created",this.getName()));
     }
 
 

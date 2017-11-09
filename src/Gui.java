@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 public class Gui extends Application {
     Stage window;
-    TableView<Car> table;
+    TableView<Vehicle> table;
 
 
     public static void main(String[] args) {
@@ -30,14 +30,11 @@ public class Gui extends Application {
 
     }
 
-    public ObservableList<Car> getCrs(Race race){
-        List<Car> cars = race.getCars();
-        List<Motorcycle> motorcycles = race.getMotors();
-        List<Truck> trucks = race.getTrucks();
-        ObservableList<Car> results = FXCollections.observableArrayList();
-
-        for (int i = 0 ; i < cars.size();i++){
-        results.add(cars.get(i));
+    public ObservableList<Vehicle> getVehicle(Race race){
+        List<Vehicle> vehicle = race.getVehicle();
+        ObservableList<Vehicle> results = FXCollections.observableArrayList();
+        for (int i = 0 ; i < vehicle.size();i++){
+        results.add(vehicle.get(i));
 
         }
 
@@ -71,18 +68,22 @@ public class Gui extends Application {
         BorderPane borderPane = new BorderPane();
         borderPane.setLeft(leftMenu);
         //Name column
-        TableColumn<Car, String> nameColumn = new TableColumn<>("Name");
+        TableColumn<Vehicle, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setMinWidth(200);
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         //Price column
-        TableColumn<Car, Integer> priceColumn = new TableColumn<>("Distance");
+        TableColumn<Vehicle, Integer> priceColumn = new TableColumn<>("Distance");
         priceColumn.setMinWidth(100);
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("distanceTraveled"));
 
 
 
         table = new TableView<>();
+        table.setMaxWidth(400);
+        table.setMinHeight(600);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
 
 
         VBox vBox = new VBox();
@@ -98,19 +99,21 @@ public class Gui extends Application {
             Car.setSpeedLimit(70);
             race.simulateRace();
             race.printResults();
-            table.setItems(getCrs(race));
-            table.getColumns().addAll(nameColumn, priceColumn);
+            table.setItems(getVehicle(race));
 
 
 
         });
 
+            table.getColumns().addAll(nameColumn, priceColumn);
 
-        //Add everything to grid
 
 
         Scene scene = new Scene(borderPane, 700, 700);
+        scene.getStylesheets().add("myStyle.css");
         window.setScene(scene);
+        window.setMinWidth(200);
+        window.setMaxWidth(800);
         window.show();
     }
 }

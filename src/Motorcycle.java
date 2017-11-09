@@ -1,7 +1,7 @@
 
 
 // speed is 100km/h. If rains, travels with 5-50km/h slower (randomly).
-public class Motorcycle {
+public class Motorcycle extends Vehicle {
     private int rainCounter = 0;
 
     public static void setNameNumber(int nameNumber) {
@@ -9,9 +9,8 @@ public class Motorcycle {
     }
 
     private static int nameNumber=1; // The number of the instance created. Used for its name. increase it when const called
-    private String name; // Are called "Motorcycle 1", "Motorcycle 2", "Motorcycle 3",... Unique.
-    private int normalSpeed = 100;
-    private int distanceTraveled;
+
+
 
     public int getRainCounter(){
         return this.rainCounter;
@@ -21,30 +20,30 @@ public class Motorcycle {
         this.rainCounter += 1;
     }
 
-    public int getDistanceTraveled(){
-        return this.distanceTraveled;
-    }
 
-    public String getName(){
-        return this.name;
-    }
+
+
 
     public Motorcycle(){
+        this.setNormalSpeed(100);
         this.setName();
     }
 
     public void setName(){
-        this.name = "Motorcycle "+String.valueOf(Motorcycle.nameNumber);
+
+        this.setName("Motorcycle "+String.valueOf(Motorcycle.nameNumber));
         Motorcycle.nameNumber++;
     }
 
+
+    // TODO When is this necessary?
     public void moveForAnHour(){
         if (Race.isRaining){
             this.increaseRainCounter();
-            this.distanceTraveled += this.normalSpeed-RandomGenerator.decreaseMotoSpeed();
+            this.setDistanceTraveled(this.getDistanceTraveled()+this.getNormalSpeed()-RandomGenerator.decreaseMotoSpeed());
 
         }else {
-            this.distanceTraveled += this.normalSpeed;
+            setDistanceTraveled(this.getDistanceTraveled() + this.getNormalSpeed());
         }
 
     }
