@@ -3,15 +3,10 @@ import java.util.List;
 
 public class Truck extends Vehicle {
 
-
     private int breakdownCounter = 0;
     static List<String> truckNames = new ArrayList<>();
     private int breakdownTurnsLeft = 0;
 
-
-    public int getBreakdownCounter() {
-        return breakdownCounter;
-    }
 
     public void increaseBreakdownCounter() {
         this.breakdownCounter += 1;
@@ -25,7 +20,6 @@ public class Truck extends Vehicle {
         this.breakdownTurnsLeft = breakdownHours;
     }
 
-
     public void setName() {
         int randomNameNumber;
         do {
@@ -35,7 +29,6 @@ public class Truck extends Vehicle {
         this.setName(String.valueOf(randomNameNumber));
         truckNames.add(this.getName());
     }
-
 
     public void moveForAnHour() {
         if (this.getBreakdownTurnsLeft() == 0) {
@@ -48,7 +41,6 @@ public class Truck extends Vehicle {
         } else {
             this.breakdownTurnsLeft--;
         }
-
     }
 
     public Truck() {

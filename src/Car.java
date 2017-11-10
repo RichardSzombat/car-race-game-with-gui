@@ -1,24 +1,19 @@
 
 
 public class Car extends Vehicle {
+    private static int speedLimit;
 
-    private int carBreakCounter = 0;
     public static int getSpeedLimit() {
         return Car.speedLimit;
-    }
-    private static int speedLimit;
-    public int getCarBreakCounter() {
-        return this.carBreakCounter;
     }
 
 
     public static void setSpeedLimit(int limit) {
         Car.speedLimit = limit;
     }
-
+    //TODO When is THIS necessary?
     public void moveForAnHour() {
         if (RandomGenerator.carBreakDown()) {
-            this.carBreakCounter += 1;
             this.setDistanceTraveled(this.getDistanceTraveled() + speedLimit);
         } else {
             this.setDistanceTraveled(this.getDistanceTraveled() + getNormalSpeed());

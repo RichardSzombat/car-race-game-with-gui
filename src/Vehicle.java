@@ -1,4 +1,7 @@
 public class Vehicle {
+    private String name;
+    private int distanceTraveled;
+    private int normalSpeed;
 
     public String getName() {
         return name;
@@ -24,11 +27,8 @@ public class Vehicle {
         this.normalSpeed = normalSpeed;
     }
 
-    private String name;
-    private int distanceTraveled;
-    private int normalSpeed;
 
-    public void moveForAnHour(){
+    public void moveForAnHour() {
 
     }
 

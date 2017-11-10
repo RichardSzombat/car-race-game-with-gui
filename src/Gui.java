@@ -39,8 +39,8 @@ public class Gui extends Application {
 
 
         VBox leftMenu = new VBox(10);
-        leftMenu.setPadding(new Insets(20,20,20,20));
-        leftMenu.getChildren().addAll(startNewRace,carSelect,motoSelect,truckSelect,numberOfVehicles);
+        leftMenu.setPadding(new Insets(20, 20, 20, 20));
+        leftMenu.getChildren().addAll(startNewRace, carSelect, motoSelect, truckSelect, numberOfVehicles);
 
 
         BorderPane borderPane = new BorderPane();
@@ -69,21 +69,20 @@ public class Gui extends Application {
 
         startNewRace.setOnAction(event -> {
             Race race = new Race();
-
-            if (carSelect.isSelected() || motoSelect.isSelected() ||truckSelect.isSelected() ) {
-                if (validateInput(numberOfVehicles)){
+            if (carSelect.isSelected() || motoSelect.isSelected() || truckSelect.isSelected()) {
+                if (validateInput(numberOfVehicles)) {
                     race.setNumberOfVehicles(Integer.parseInt(numberOfVehicles.getText()));
-                    race.createVehicles(carSelect.isSelected(),motoSelect.isSelected(),truckSelect.isSelected());
+                    race.createVehicles(carSelect.isSelected(), motoSelect.isSelected(), truckSelect.isSelected());
                     Car.setSpeedLimit(70);
                     race.simulateRace();
                     race.printResults();
                     table.setItems(race.getVehicles());
-                }else{
-                    AlertBox.display("Invalid input","Enter an integer between 1 - 99");
+                } else {
+                    AlertBox.display("Invalid input", "Enter an integer between 1 - 99");
                     numberOfVehicles.clear();
                 }
-            }else {
-                AlertBox.display("Nothing selected","Select something");
+            } else {
+                AlertBox.display("Nothing selected", "Select something");
 
             }
         });
@@ -95,15 +94,15 @@ public class Gui extends Application {
         window.show();
     }
 
-    public boolean validateInput(TextField input){
-        int number ;
-        try{
+    public boolean validateInput(TextField input) {
+        int number;
+        try {
             number = Integer.parseInt(input.getText());
-                if (number < 0 || number >99){
-                    return false;
-                }
+            if (number < 0 || number > 99) {
+                return false;
+            }
             return true;
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
