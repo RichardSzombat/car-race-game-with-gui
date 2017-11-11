@@ -40,11 +40,15 @@ public class Gui extends Application {
         TextField numberOfVehicles = new TextField();
         numberOfVehicles.setPromptText("Only integers are accepted!");
 
+        Button options = new Button();
+        options.setText("Options");
+        options.setOnAction(event -> Options.display());
+
 
         VBox leftMenu = new VBox(10);
         leftMenu.setPadding(new Insets(20, 20, 20, 20));
 
-        leftMenu.getChildren().addAll(startNewRace, carSelect, motoSelect, truckSelect,numberLabel, numberOfVehicles);
+        leftMenu.getChildren().addAll(startNewRace, carSelect, motoSelect, truckSelect,numberLabel, numberOfVehicles,options);
 
 
         BorderPane borderPane = new BorderPane();
