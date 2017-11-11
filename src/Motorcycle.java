@@ -7,8 +7,9 @@ public class Motorcycle extends Vehicle {
     }
 
     public Motorcycle() {
-        this.setNormalSpeed(100);
         this.setName();
+        this.setNormalSpeed(100);
+        this.setType("motorcycle");
     }
 
     public void setName() {

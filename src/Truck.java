@@ -8,6 +8,7 @@ public class Truck extends Vehicle {
     private int breakdownTurnsLeft = 0;
 
 
+
     public void increaseBreakdownCounter() {
         this.breakdownCounter += 1;
     }
@@ -21,6 +22,7 @@ public class Truck extends Vehicle {
     }
 
     public void setName() {
+
         int randomNameNumber;
         do {
             randomNameNumber = RandomGenerator.randomTruckName();
@@ -30,7 +32,15 @@ public class Truck extends Vehicle {
         truckNames.add(this.getName());
     }
 
+    public static void clearTrucknames(){
+        if (!truckNames.isEmpty()){
+        truckNames.clear();
+
+        }
+    }
+
     public void moveForAnHour() {
+
         if (this.getBreakdownTurnsLeft() == 0) {
             if (!(RandomGenerator.truckBreakdown())) {
                 this.setDistanceTraveled(this.getDistanceTraveled() + this.getNormalSpeed());
@@ -45,6 +55,7 @@ public class Truck extends Vehicle {
 
     public Truck() {
         this.setName();
+        this.setType("truck");
         this.setNormalSpeed(100);
         System.out.println(String.format("%s truck has been created", this.getName()));
     }

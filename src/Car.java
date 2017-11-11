@@ -21,6 +21,7 @@ public class Car extends Vehicle {
     }
 
     public Car() {
+        this.setType("car");
         this.setName(RandomGenerator.randomCarName());
         this.setNormalSpeed(RandomGenerator.carNormalSpeed());
         System.out.println(String.format("%s created with the speed : %s", this.getName(), this.getNormalSpeed()));

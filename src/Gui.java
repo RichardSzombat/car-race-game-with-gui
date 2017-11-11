@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -34,16 +35,20 @@ public class Gui extends Application {
         motoSelect.setSelected(true);
         truckSelect.setSelected(true);
 
+        Text numberLabel = new Text("Enter the number of vehicles (1 - 999)");
+
         TextField numberOfVehicles = new TextField();
-        numberOfVehicles.setPromptText("Enter the number of vehicles (int)");
+        numberOfVehicles.setPromptText("Only integers are accepted!");
 
 
         VBox leftMenu = new VBox(10);
         leftMenu.setPadding(new Insets(20, 20, 20, 20));
-        leftMenu.getChildren().addAll(startNewRace, carSelect, motoSelect, truckSelect, numberOfVehicles);
+
+        leftMenu.getChildren().addAll(startNewRace, carSelect, motoSelect, truckSelect,numberLabel, numberOfVehicles);
 
 
         BorderPane borderPane = new BorderPane();
+
         borderPane.setLeft(leftMenu);
 
         TableColumn<Vehicle, String> nameColumn = new TableColumn<>("Name");
@@ -55,14 +60,18 @@ public class Gui extends Application {
         distanceColumn.setMinWidth(100);
         distanceColumn.setCellValueFactory(new PropertyValueFactory<>("distanceTraveled"));
 
+        TableColumn<Vehicle, String> typeColumn = new TableColumn<>("Type");
+        typeColumn.setMinWidth(100);
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+
         table = new TableView<>();
         table.setMinWidth(350);
-        table.setMaxWidth(400);
         table.setMinHeight(600);
 
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         VBox content = new VBox();
+
         content.getChildren().addAll(table);
 
         borderPane.setCenter(content);
@@ -78,7 +87,7 @@ public class Gui extends Application {
                     race.printResults();
                     table.setItems(race.getVehicles());
                 } else {
-                    AlertBox.display("Invalid input", "Enter an integer between 1 - 99");
+                    AlertBox.display("Invalid input", "Enter an integer between 1 - 999");
                     numberOfVehicles.clear();
                 }
             } else {
@@ -87,8 +96,8 @@ public class Gui extends Application {
             }
         });
 
-        table.getColumns().addAll(nameColumn, distanceColumn);
-        Scene scene = new Scene(borderPane, 700, 700);
+        table.getColumns().addAll(nameColumn, distanceColumn,typeColumn);
+        Scene scene = new Scene(borderPane, 750, 700);
         scene.getStylesheets().add("myStyle.css");
         window.setScene(scene);
         window.show();
@@ -98,7 +107,7 @@ public class Gui extends Application {
         int number;
         try {
             number = Integer.parseInt(input.getText());
-            if (number < 0 || number > 99) {
+            if (number < 0 || number > 999) {
                 return false;
             }
             return true;

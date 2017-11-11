@@ -2,6 +2,15 @@ public class Vehicle {
     private String name;
     private int distanceTraveled;
     private int normalSpeed;
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getName() {
         return name;

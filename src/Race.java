@@ -26,6 +26,8 @@ public class Race {
 
 
     public void createVehicles(boolean isCarChecked, boolean isMotoChecked, boolean isTruckChecked) {
+        Motorcycle.setNameNumber(1);
+        Truck.clearTrucknames();
         for (int i = 0; i < numberOfVehicles; i++) {
             if (isCarChecked) {
                 car = new Car();
@@ -43,7 +45,7 @@ public class Race {
     }
 
     public void simulateRace() {
-        Motorcycle.setNameNumber(1);
+
         for (int i = 0; i < vehicle.size(); i++) {
             for (int hour = 0; hour < 50; hour++) {
                 RandomGenerator.isRaining();

@@ -4,6 +4,10 @@ import java.util.Random;
 
 public class RandomGenerator {
 
+    private RandomGenerator(){
+
+    }
+
     static int decreaseMotoSpeed(){
         return new Random().nextInt(45)+5;
     }
