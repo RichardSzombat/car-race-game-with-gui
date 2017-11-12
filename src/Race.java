@@ -47,7 +47,7 @@ public class Race {
     public void simulateRace() {
 
         for (int i = 0; i < vehicle.size(); i++) {
-            for (int hour = 0; hour < 50; hour++) {
+            for (int hour = 0; hour < Options.racingHours; hour++) {
                 RandomGenerator.isRaining();
                 this.vehicle.get(i).moveForAnHour();
             }

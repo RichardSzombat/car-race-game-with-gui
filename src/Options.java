@@ -15,6 +15,18 @@ import java.text.NumberFormat;
 public class Options {
 
     public static final int CHANCE_OF_RAIN = 30;
+    public static int racingHours = 50;
+
+
+
+    public static void setSlider(Slider slider,Label sliderLabel,int sliderValue,int sliderMin, int sliderMax){
+        slider.setValue(sliderValue);
+        slider.setMin(sliderMin);
+        slider.setMax(sliderMax);
+        slider.valueProperty().addListener((obs, oldval, newVal) ->
+                slider.setValue(newVal.intValue()));
+        sliderLabel.textProperty().bindBidirectional(slider.valueProperty(),NumberFormat.getNumberInstance());
+    }
 
     public static void display() {
         Stage window = new Stage();
@@ -34,22 +46,30 @@ public class Options {
         race.setPrefWidth(200);
         Label raceLabel = new Label();
         raceLabel.setText("Race");
+
+
+        //Race sliders with labels
+        //Raining
         Label isRaining = new Label();
         isRaining.setText("Set the chance of rain");
-
-        //Slider with labels
         Slider chanceOfRain = new Slider();
-        chanceOfRain.setValue(CHANCE_OF_RAIN);
-        chanceOfRain.setMin(0);
-        chanceOfRain.setMax(100);
-        Label chanceOfRainValue = new Label(Integer.toString(CHANCE_OF_RAIN));
-        chanceOfRain.valueProperty().addListener((obs, oldval, newVal) ->
-                chanceOfRain.setValue(newVal.intValue()));
-        chanceOfRainValue.textProperty().bindBidirectional(chanceOfRain.valueProperty(),NumberFormat.getNumberInstance());
+        Label chanceOfRainLabel= new Label(Integer.toString(RandomGenerator.chanceOfRain));
+        setSlider(chanceOfRain,chanceOfRainLabel,RandomGenerator.chanceOfRain,0,100);
+        //Racing hours
+        Label racingHours = new Label("Set racing hours ");
+        Slider hours = new Slider();
+        Label hoursLabel= new Label(Integer.toString(Options.racingHours));
+        setSlider(hours,hoursLabel,Options.racingHours,1,100);
 
-        race.getChildren().addAll(raceLabel,isRaining,chanceOfRain,chanceOfRainValue);
+
+
+
+        race.getChildren().addAll(raceLabel,isRaining,chanceOfRain,chanceOfRainLabel,racingHours,hours,hoursLabel);
         raceLabel.setAlignment(Pos.CENTER);
 
+
+        //TODO clean up the code !!
+        //TODO static variables in Options instead RandomGenerator
         //Car pane
         VBox car = new VBox(10);
         car.setPadding(new Insets(10,10,10,20));
@@ -80,7 +100,8 @@ public class Options {
         bottomMenu.setAlignment(Pos.CENTER);
         Button saveButton = new Button("Save");
         saveButton.setOnAction(event -> {
-            RandomGenerator.chanceOfRain = Integer.parseInt(chanceOfRainValue.getText());
+            RandomGenerator.chanceOfRain = Integer.parseInt(chanceOfRainLabel.getText());
+            Options.racingHours = Integer.parseInt(hoursLabel.getText());
         });
         saveButton.setPadding(new Insets(10,10,10,10));
         bottomMenu.getChildren().addAll(saveButton);
@@ -92,7 +113,7 @@ public class Options {
         borderPane.setBottom(bottomMenu);
 
 
-        Scene scene = new Scene(borderPane,800,600);
+        Scene scene = new Scene(borderPane,800,400);
         window.setScene(scene);
         window.show();
 
