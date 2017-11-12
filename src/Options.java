@@ -78,7 +78,6 @@ public class Options {
 
         //Car limit chance
         Label setCarLimit = new Label("Chance to limit speed");
-        setCarLimit.setAlignment(Pos.CENTER);
         Slider limitChance = new Slider();
         Label limitChanceLabel = new Label(Integer.toString(RandomGenerator.carLimitChance));
         setSlider(limitChance,limitChanceLabel,RandomGenerator.carLimitChance,0,100);
@@ -106,9 +105,14 @@ public class Options {
         Label motoNormalSpeedLabel = new Label(Integer.toString(Motorcycle.normalSpeed));
         setSlider(motoNormalSpeed,motoNormalSpeedLabel,Motorcycle.normalSpeed,0,100);
 
+        //Motorcycle custom name
+        Label setCustomMotoName = new Label("Enter custom name : ");
+        TextField customName = new TextField(Motorcycle.customName);
 
 
-        motorcycle.getChildren().addAll(motorcycleLabel,setMotoNormalSpeed,motoNormalSpeed,motoNormalSpeedLabel);
+
+
+        motorcycle.getChildren().addAll(motorcycleLabel,setCustomMotoName,customName,setMotoNormalSpeed,motoNormalSpeed,motoNormalSpeedLabel);
 
         //Truck pane
         VBox truck = new VBox(10);
@@ -117,12 +121,27 @@ public class Options {
         truck.setPrefWidth(200);
         Label truckLabel = new Label();
         truckLabel.setText("Truck");
-        truck.getChildren().add(truckLabel);
 
+        //Truck normal speed
+        Label setTruckNormalSpeed = new Label("Set normal speed");
+        Slider truckNormalSpeed = new Slider();
+        Label truckNormalSpeedLabel = new Label(Integer.toString(Truck.normalSpeed));
+        setSlider(truckNormalSpeed,truckNormalSpeedLabel,Truck.normalSpeed,0,100);
+
+        //Truck breakdown chance
+        Label setTruckBreakdownChance = new Label("Breakdown chance");
+        Slider truckBreakdown = new Slider();
+        Label truckBreakdownLabel = new Label(Integer.toString(Truck.breakdownChance));
+        setSlider(truckBreakdown,truckBreakdownLabel,Truck.breakdownChance,0,100);
+
+
+
+        truck.getChildren().addAll(truckLabel,setTruckNormalSpeed,truckNormalSpeed,truckNormalSpeedLabel,
+                                            setTruckBreakdownChance,truckBreakdown,truckBreakdownLabel);
 
         //Bottom menu
         HBox bottomMenu = new HBox(10);
-        bottomMenu.setAlignment(Pos.CENTER);
+        bottomMenu.setAlignment(Pos.TOP_CENTER);
         Button saveButton = new Button("Save");
         saveButton.setOnAction(event -> {
             RandomGenerator.chanceOfRain = Integer.parseInt(chanceOfRainLabel.getText());
@@ -130,6 +149,9 @@ public class Options {
             RandomGenerator.carLimitChance = Integer.parseInt(limitChanceLabel.getText());
             Car.setSpeedLimit(Integer.parseInt(limitedSpeedLabel.getText()));
             Motorcycle.normalSpeed = Integer.parseInt(motoNormalSpeedLabel.getText());
+            Motorcycle.customName = customName.getText();
+            Truck.normalSpeed = Integer.parseInt(truckNormalSpeedLabel.getText());
+            Truck.breakdownChance = Integer.parseInt(truckBreakdownLabel.getText());
         });
         saveButton.setPadding(new Insets(10,10,10,10));
         bottomMenu.getChildren().addAll(saveButton);
@@ -140,7 +162,7 @@ public class Options {
         borderPane.setBottom(bottomMenu);
 
 
-        Scene scene = new Scene(borderPane,800,400);
+        Scene scene = new Scene(borderPane,800,300);
         window.setScene(scene);
         window.show();
 

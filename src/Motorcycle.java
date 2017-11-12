@@ -2,6 +2,7 @@
 public class Motorcycle extends Vehicle {
     private static int nameNumber = 1;
     public static int normalSpeed = 100;
+    public static String customName = "Motorcycle";
 
     public static void setNameNumber(int nameNumber) {
         Motorcycle.nameNumber = nameNumber;
@@ -14,7 +15,7 @@ public class Motorcycle extends Vehicle {
     }
 
     public void setName() {
-        this.setName("Motorcycle " + String.valueOf(Motorcycle.nameNumber));
+        this.setName(customName+" " + String.valueOf(Motorcycle.nameNumber));
         Motorcycle.nameNumber++;
     }
 

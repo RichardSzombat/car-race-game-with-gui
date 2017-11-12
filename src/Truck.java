@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Truck extends Vehicle {
-
+    static int normalSpeed = 100;
+    static int breakdownChance = 5;
     private int breakdownCounter = 0;
     static List<String> truckNames = new ArrayList<>();
     private int breakdownTurnsLeft = 0;
@@ -56,7 +57,7 @@ public class Truck extends Vehicle {
     public Truck() {
         this.setName();
         this.setType("truck");
-        this.setNormalSpeed(100);
+        this.setNormalSpeed(normalSpeed);
         System.out.println(String.format("%s truck has been created", this.getName()));
     }
 

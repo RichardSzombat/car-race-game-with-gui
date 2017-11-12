@@ -22,7 +22,7 @@ public class RandomGenerator {
 
     static boolean truckBreakdown(){
         int breakdown = new Random().nextInt(100)+1;
-        return breakdown < 6;
+        return breakdown <= Truck.breakdownChance;
 
     }
 
