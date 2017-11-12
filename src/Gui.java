@@ -21,7 +21,7 @@ public class Gui extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
-        window.setTitle("Car race");
+        window.setTitle("Race simulation");
         window.setMinWidth(700);
         window.setMaxWidth(800);
         window.setMinHeight(600);

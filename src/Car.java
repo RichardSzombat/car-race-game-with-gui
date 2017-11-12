@@ -10,7 +10,6 @@ public class Car extends Vehicle {
         return Car.speedLimit;
     }
 
-
     public static void setSpeedLimit(int limit) {
         Car.speedLimit = limit;
     }

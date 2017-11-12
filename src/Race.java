@@ -1,8 +1,6 @@
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 
 public class Race {
     static boolean isRaining;
@@ -11,13 +9,9 @@ public class Race {
     private Motorcycle motorcycle;
     private Truck truck;
     private int numberOfVehicles;
-    public static final int CHANCE_OF_RAIN = 30;
+
     public static int racingHours = 50;
     static int chanceOfRain = 30;
-
-    public List<Vehicle> getVehicle() {
-        return vehicle;
-    }
 
     public ObservableList<Vehicle> getVehicles() {
         return this.vehicle;
@@ -26,7 +20,6 @@ public class Race {
     public void setNumberOfVehicles(int numberOfVehicles) {
         this.numberOfVehicles = numberOfVehicles;
     }
-
 
     public void createVehicles(boolean isCarChecked, boolean isMotoChecked, boolean isTruckChecked) {
         Motorcycle.setNameNumber(1);
@@ -62,8 +55,6 @@ public class Race {
             System.out.println(String.format("%s travelled : %s km",
                     vehicle.get(i).getName(),
                     vehicle.get(i).getDistanceTraveled()));
-
         }
-        System.out.println(Motorcycle.normalSpeed);
     }
 }

@@ -12,6 +12,7 @@ public class Motorcycle extends Vehicle {
         this.setName();
         this.setNormalSpeed(normalSpeed);
         this.setType("motorcycle");
+        System.out.println(String.format("%s created with the speed : %s", this.getName(), this.getNormalSpeed()));
     }
 
     public void setName() {

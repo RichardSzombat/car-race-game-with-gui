@@ -5,15 +5,9 @@ public class Truck extends Vehicle {
     static int normalSpeed = 100;
     static int breakdownChance = 5;
     static int breakdownHours = 2;
-    private int breakdownCounter = 0;
     static List<String> truckNames = new ArrayList<>();
+
     private int breakdownTurnsLeft = 0;
-
-
-
-    public void increaseBreakdownCounter() {
-        this.breakdownCounter += 1;
-    }
 
     public int getBreakdownTurnsLeft() {
         return this.breakdownTurnsLeft;
@@ -48,7 +42,6 @@ public class Truck extends Vehicle {
                 this.setDistanceTraveled(this.getDistanceTraveled() + this.getNormalSpeed());
             } else {
                 this.setBreakdownTurnsLeft(breakdownHours);
-                this.increaseBreakdownCounter();
             }
         } else {
             this.breakdownTurnsLeft--;
@@ -59,7 +52,7 @@ public class Truck extends Vehicle {
         this.setName();
         this.setType("truck");
         this.setNormalSpeed(normalSpeed);
-        System.out.println(String.format("%s truck has been created", this.getName()));
+        System.out.println(String.format("%s created with the speed : %s", this.getName(), this.getNormalSpeed()));
     }
 
 
