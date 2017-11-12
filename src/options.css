@@ -4,17 +4,18 @@
     -fx-text-fill: #1C1C1C;
 }
 
-.check-box {
-    -fx-text-fill: #1C1C1C;
-}
-
 .button {
     -fx-background-color: #00487C;
     -fx-text-fill: #F5F0F6;
     -fx-background-radius: 15;
-    -fx-min-width: 100;
 }
 
-.table-view {
-    -fx-background-color: #DADDD8;
+.vbox {
+    -fx-pref-width: 250;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-border-width: 2;
+    -fx-border-insets: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #00487C;
 }

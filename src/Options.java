@@ -34,15 +34,16 @@ public class Options {
         window.setTitle("Options");
         window.setMinWidth(250);
 
+
         BorderPane borderPane = new BorderPane();
 
         HBox content = new HBox(10);
 
         //Race pane
         VBox race = new VBox(10);
+        race.getStyleClass().add("vbox");
         race.setAlignment(Pos.TOP_CENTER);
         race.setPadding(new Insets(10,10,10,20));
-        race.setPrefWidth(200);
         Label raceLabel = new Label();
         raceLabel.setText("Race");
 
@@ -65,15 +66,27 @@ public class Options {
         raceLabel.setAlignment(Pos.CENTER);
 
 
-        //TODO clean up the code !!
-        //TODO static variables in Options instead RandomGenerator
+        //TODO cleanCode refactor
+
         //Car pane
         VBox car = new VBox(10);
+        car.getStyleClass().add("vbox");
         car.setAlignment(Pos.TOP_CENTER);
         car.setPadding(new Insets(10,10,10,20));
-        car.setPrefWidth(200);
         Label carLabel = new Label();
         carLabel.setText("Car");
+
+
+        //Car normal speed
+        Label setCarNormalSpeed = new Label("Set normal speed \n between ");
+        ChoiceBox<Integer> carMinSpeed = new ChoiceBox<>();
+        ChoiceBox<Integer> carMaxSpeed = new ChoiceBox<>();
+        for (int i = 0 ; i <= 200; i+=10){
+            carMinSpeed.getItems().add(i);
+            carMaxSpeed.getItems().add(i);
+        }
+        carMinSpeed.setValue(Car.minSpeed);
+        carMaxSpeed.setValue(Car.maxSpeed);
 
         //Car limit chance
         Label setCarLimit = new Label("Chance to limit speed");
@@ -87,14 +100,14 @@ public class Options {
         Label limitedSpeedLabel = new Label(Integer.toString(Car.getSpeedLimit()));
         setSlider(limitedSpeed,limitedSpeedLabel,Car.getSpeedLimit(),0,79);
 
-
-        car.getChildren().addAll(carLabel,setCarLimit,limitChance,limitChanceLabel,carLimitedSpeed,limitedSpeed,limitedSpeedLabel);
+        car.getChildren().addAll(carLabel,setCarNormalSpeed,carMinSpeed,carMaxSpeed,setCarLimit,limitChance,limitChanceLabel,carLimitedSpeed,
+                                limitedSpeed,limitedSpeedLabel);
 
         //Motorcycle pane
         VBox motorcycle = new VBox(10);
+        motorcycle.getStyleClass().add("vbox");
         motorcycle.setAlignment(Pos.TOP_CENTER);
         motorcycle.setPadding(new Insets(10,10,10,20));
-        motorcycle.setPrefWidth(200);
         Label motorcycleLabel = new Label();
         motorcycleLabel.setText("Motorcycle");
 
@@ -108,16 +121,14 @@ public class Options {
         Label setCustomMotoName = new Label("Enter custom name : ");
         TextField customName = new TextField(Motorcycle.customName);
 
-
-
-
-        motorcycle.getChildren().addAll(motorcycleLabel,setCustomMotoName,customName,setMotoNormalSpeed,motoNormalSpeed,motoNormalSpeedLabel);
+        motorcycle.getChildren().addAll(motorcycleLabel,setCustomMotoName,customName,setMotoNormalSpeed,
+                                        motoNormalSpeed,motoNormalSpeedLabel);
 
         //Truck pane
         VBox truck = new VBox(10);
+        truck.getStyleClass().add("vbox");
         truck.setAlignment(Pos.TOP_CENTER);
         truck.setPadding(new Insets(10,10,10,20));
-        truck.setPrefWidth(200);
         Label truckLabel = new Label();
         truckLabel.setText("Truck");
 
@@ -141,42 +152,52 @@ public class Options {
         }
         breakdownHours.setValue(Truck.breakdownHours);
 
-
-
         truck.getChildren().addAll(truckLabel,setTruckNormalSpeed,truckNormalSpeed,truckNormalSpeedLabel,
                                             setTruckBreakdownChance,truckBreakdown,truckBreakdownLabel,
                                             setBreakdownHours,breakdownHours);
 
         //Bottom menu
         HBox bottomMenu = new HBox(10);
-        bottomMenu.setAlignment(Pos.TOP_CENTER);
+        bottomMenu.setAlignment(Pos.CENTER);
+        bottomMenu.setMinHeight(70);
         Button saveButton = new Button("Save");
+
         saveButton.setOnAction(event -> {
             if (customName.getText().isEmpty()){
-                AlertBox.display("Invalid input","Custom name cannot be empty");
-            }else{
+                AlertBox.display("Invalid input","Custom name cannot be empty","OK");
+            }else if ((carMaxSpeed.getValue()-carMinSpeed.getValue())<0 || carMaxSpeed.getValue()==0){
+                AlertBox.display("Invalid range","Car normal speed must in positive range","OK");
+            }else if ((carMinSpeed.getValue() < Integer.parseInt(limitedSpeedLabel.getText()))){
+                AlertBox.display("Invalid limited speed","Limited speed cannot exceed minimum speed","OK");
+            } else {
+                Race.chanceOfRain = Integer.parseInt(chanceOfRainLabel.getText());
+                Race.racingHours = Integer.parseInt(hoursLabel.getText());
+                Car.carLimitChance = Integer.parseInt(limitChanceLabel.getText());
+                Car.setSpeedLimit(Integer.parseInt(limitedSpeedLabel.getText()));
+                Car.minSpeed = carMinSpeed.getValue();
+                Car.maxSpeed = carMaxSpeed.getValue();
+                Motorcycle.normalSpeed = Integer.parseInt(motoNormalSpeedLabel.getText());
+                Motorcycle.customName = customName.getText();
+                Truck.normalSpeed = Integer.parseInt(truckNormalSpeedLabel.getText());
+                Truck.breakdownChance = Integer.parseInt(truckBreakdownLabel.getText());
+                Truck.breakdownHours = breakdownHours.getValue();
+                AlertBox.display("Saved","Changes have been saved","OK");
 
-            Race.chanceOfRain = Integer.parseInt(chanceOfRainLabel.getText());
-            Race.racingHours = Integer.parseInt(hoursLabel.getText());
-            Car.carLimitChance = Integer.parseInt(limitChanceLabel.getText());
-            Car.setSpeedLimit(Integer.parseInt(limitedSpeedLabel.getText()));
-            Motorcycle.normalSpeed = Integer.parseInt(motoNormalSpeedLabel.getText());
-            Motorcycle.customName = customName.getText();
-            Truck.normalSpeed = Integer.parseInt(truckNormalSpeedLabel.getText());
-            Truck.breakdownChance = Integer.parseInt(truckBreakdownLabel.getText());
-            Truck.breakdownHours = breakdownHours.getValue();
             }
         });
-        saveButton.setPadding(new Insets(10,10,10,10));
-        bottomMenu.getChildren().addAll(saveButton);
 
+        Button cancel = new Button("Cancel");
+        cancel.setOnAction(event -> window.close());
+
+        bottomMenu.getChildren().addAll(saveButton,cancel);
 
         content.getChildren().addAll(race,car,motorcycle,truck,bottomMenu);
         borderPane.setCenter(content);
         borderPane.setBottom(bottomMenu);
-
-
-        Scene scene = new Scene(borderPane,800,300);
+        Scene scene = new Scene(borderPane,1000,400);
+        scene.getStylesheets().add("options.css");
+        window.setMinHeight(420);
+        window.setMaxHeight(450);
         window.setScene(scene);
         window.show();
 

@@ -44,11 +44,15 @@ public class Gui extends Application {
         options.setText("Options");
         options.setOnAction(event -> Options.display());
 
+        Button exit = new Button("Exit");
+        exit.setOnAction(event -> window.close());
+
 
         VBox leftMenu = new VBox(10);
         leftMenu.setPadding(new Insets(20, 20, 20, 20));
 
-        leftMenu.getChildren().addAll(startNewRace, carSelect, motoSelect, truckSelect,numberLabel, numberOfVehicles,options);
+        leftMenu.getChildren().addAll(startNewRace, carSelect, motoSelect, truckSelect,numberLabel,
+                                        numberOfVehicles,options,exit);
 
 
         BorderPane borderPane = new BorderPane();
@@ -91,11 +95,11 @@ public class Gui extends Application {
                     race.printResults();
                     table.setItems(race.getVehicles());
                 } else {
-                    AlertBox.display("Invalid input", "Enter an integer between 1 - 999");
+                    AlertBox.display("Invalid input", "Enter an integer between 1 - 999","OK");
                     numberOfVehicles.clear();
                 }
             } else {
-                AlertBox.display("Nothing selected", "Select something");
+                AlertBox.display("Nothing selected", "Select something","OK");
 
             }
         });

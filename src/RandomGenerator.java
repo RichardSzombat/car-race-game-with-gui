@@ -34,7 +34,7 @@ public class RandomGenerator {
 
     static int carNormalSpeed(){
 
-        return new Random().nextInt(30)+80;
+        return new Random().nextInt(Car.maxSpeed-Car.minSpeed)+Car.minSpeed;
     }
 
     static int randomTruckName(){
