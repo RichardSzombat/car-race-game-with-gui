@@ -76,7 +76,15 @@ public class Options {
         car.setPrefWidth(200);
         Label carLabel = new Label();
         carLabel.setText("Car");
-        car.getChildren().add(carLabel);
+
+        //Car limit chance
+        Label setCarLimit = new Label("Chance to limit speed");
+        Slider limitChance = new Slider();
+        Label limitChanceLabel = new Label(Integer.toString(RandomGenerator.carLimitChance));
+        setSlider(limitChance,limitChanceLabel,RandomGenerator.carLimitChance,0,100);
+
+
+        car.getChildren().addAll(carLabel,setCarLimit,limitChance,limitChanceLabel);
 
         //Motorcycle pane
         VBox motorcycle = new VBox(10);
@@ -102,6 +110,7 @@ public class Options {
         saveButton.setOnAction(event -> {
             RandomGenerator.chanceOfRain = Integer.parseInt(chanceOfRainLabel.getText());
             Options.racingHours = Integer.parseInt(hoursLabel.getText());
+            RandomGenerator.carLimitChance = Integer.parseInt(limitChanceLabel.getText());
         });
         saveButton.setPadding(new Insets(10,10,10,10));
         bottomMenu.getChildren().addAll(saveButton);

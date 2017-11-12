@@ -5,6 +5,7 @@ import java.util.Random;
 public class RandomGenerator {
 
     static int chanceOfRain = 30;
+    static int carLimitChance = 35;
 
     private RandomGenerator(){
 
@@ -25,9 +26,9 @@ public class RandomGenerator {
 
     }
 
-    static boolean carBreakDown(){
-        int carBreakDown = new Random().nextInt(100)+1;
-        return carBreakDown <= 35;
+    static boolean carLimitation(){
+        int chance = new Random().nextInt(100)+1;
+        return chance <= carLimitChance;
     }
 
 

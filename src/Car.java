@@ -13,7 +13,7 @@ public class Car extends Vehicle {
     }
     //TODO When is THIS necessary?
     public void moveForAnHour() {
-        if (RandomGenerator.carBreakDown()) {
+        if (RandomGenerator.carLimitation()) {
             this.setDistanceTraveled(this.getDistanceTraveled() + speedLimit);
         } else {
             this.setDistanceTraveled(this.getDistanceTraveled() + getNormalSpeed());
