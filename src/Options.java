@@ -14,8 +14,7 @@ import java.text.NumberFormat;
 
 public class Options {
 
-    public static final int CHANCE_OF_RAIN = 30;
-    public static int racingHours = 50;
+
 
 
 
@@ -53,13 +52,13 @@ public class Options {
         Label isRaining = new Label();
         isRaining.setText("Set the chance of rain");
         Slider chanceOfRain = new Slider();
-        Label chanceOfRainLabel= new Label(Integer.toString(RandomGenerator.chanceOfRain));
-        setSlider(chanceOfRain,chanceOfRainLabel,RandomGenerator.chanceOfRain,0,100);
+        Label chanceOfRainLabel= new Label(Integer.toString(Race.chanceOfRain));
+        setSlider(chanceOfRain,chanceOfRainLabel,Race.chanceOfRain,0,100);
         //Racing hours
         Label racingHours = new Label("Set racing hours ");
         Slider hours = new Slider();
-        Label hoursLabel= new Label(Integer.toString(Options.racingHours));
-        setSlider(hours,hoursLabel,Options.racingHours,1,100);
+        Label hoursLabel= new Label(Integer.toString(Race.racingHours));
+        setSlider(hours,hoursLabel,Race.racingHours,1,100);
 
 
         race.getChildren().addAll(raceLabel,isRaining,chanceOfRain,chanceOfRainLabel,racingHours,hours,hoursLabel);
@@ -79,8 +78,8 @@ public class Options {
         //Car limit chance
         Label setCarLimit = new Label("Chance to limit speed");
         Slider limitChance = new Slider();
-        Label limitChanceLabel = new Label(Integer.toString(RandomGenerator.carLimitChance));
-        setSlider(limitChance,limitChanceLabel,RandomGenerator.carLimitChance,0,100);
+        Label limitChanceLabel = new Label(Integer.toString(Car.carLimitChance));
+        setSlider(limitChance,limitChanceLabel,Car.carLimitChance,0,100);
 
         //Car limited speed
         Label carLimitedSpeed = new Label("Limited car speed");
@@ -134,24 +133,39 @@ public class Options {
         Label truckBreakdownLabel = new Label(Integer.toString(Truck.breakdownChance));
         setSlider(truckBreakdown,truckBreakdownLabel,Truck.breakdownChance,0,100);
 
+        //Truck breakdown hours
+        Label setBreakdownHours = new Label("Breakdown in hours");
+        ChoiceBox<Integer> breakdownHours = new ChoiceBox<>();
+        for (int i = 1; i <=10;i++){
+            breakdownHours.getItems().add(i);
+        }
+        breakdownHours.setValue(Truck.breakdownHours);
+
 
 
         truck.getChildren().addAll(truckLabel,setTruckNormalSpeed,truckNormalSpeed,truckNormalSpeedLabel,
-                                            setTruckBreakdownChance,truckBreakdown,truckBreakdownLabel);
+                                            setTruckBreakdownChance,truckBreakdown,truckBreakdownLabel,
+                                            setBreakdownHours,breakdownHours);
 
         //Bottom menu
         HBox bottomMenu = new HBox(10);
         bottomMenu.setAlignment(Pos.TOP_CENTER);
         Button saveButton = new Button("Save");
         saveButton.setOnAction(event -> {
-            RandomGenerator.chanceOfRain = Integer.parseInt(chanceOfRainLabel.getText());
-            Options.racingHours = Integer.parseInt(hoursLabel.getText());
-            RandomGenerator.carLimitChance = Integer.parseInt(limitChanceLabel.getText());
+            if (customName.getText().isEmpty()){
+                AlertBox.display("Invalid input","Custom name cannot be empty");
+            }else{
+
+            Race.chanceOfRain = Integer.parseInt(chanceOfRainLabel.getText());
+            Race.racingHours = Integer.parseInt(hoursLabel.getText());
+            Car.carLimitChance = Integer.parseInt(limitChanceLabel.getText());
             Car.setSpeedLimit(Integer.parseInt(limitedSpeedLabel.getText()));
             Motorcycle.normalSpeed = Integer.parseInt(motoNormalSpeedLabel.getText());
             Motorcycle.customName = customName.getText();
             Truck.normalSpeed = Integer.parseInt(truckNormalSpeedLabel.getText());
             Truck.breakdownChance = Integer.parseInt(truckBreakdownLabel.getText());
+            Truck.breakdownHours = breakdownHours.getValue();
+            }
         });
         saveButton.setPadding(new Insets(10,10,10,10));
         bottomMenu.getChildren().addAll(saveButton);

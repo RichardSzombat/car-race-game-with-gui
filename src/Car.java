@@ -2,6 +2,7 @@
 
 public class Car extends Vehicle {
     private static int speedLimit = 70;
+    static int carLimitChance = 35;
 
     public static int getSpeedLimit() {
         return Car.speedLimit;

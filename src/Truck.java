@@ -4,6 +4,7 @@ import java.util.List;
 public class Truck extends Vehicle {
     static int normalSpeed = 100;
     static int breakdownChance = 5;
+    static int breakdownHours = 2;
     private int breakdownCounter = 0;
     static List<String> truckNames = new ArrayList<>();
     private int breakdownTurnsLeft = 0;
@@ -46,7 +47,7 @@ public class Truck extends Vehicle {
             if (!(RandomGenerator.truckBreakdown())) {
                 this.setDistanceTraveled(this.getDistanceTraveled() + this.getNormalSpeed());
             } else {
-                this.setBreakdownTurnsLeft(2);
+                this.setBreakdownTurnsLeft(breakdownHours);
                 this.increaseBreakdownCounter();
             }
         } else {

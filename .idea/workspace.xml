@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="199c6ac9-9768-4b31-8cd4-e88642aafae9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Motorcycle.java" afterPath="$PROJECT_DIR$/src/Motorcycle.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Car.java" afterPath="$PROJECT_DIR$/src/Car.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Options.java" afterPath="$PROJECT_DIR$/src/Options.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Race.java" afterPath="$PROJECT_DIR$/src/Race.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RandomGenerator.java" afterPath="$PROJECT_DIR$/src/RandomGenerator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Truck.java" afterPath="$PROJECT_DIR$/src/Truck.java" />
     </list>
@@ -20,8 +21,8 @@
       <file leaf-file-name="Race.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Race.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="616">
-              <caret line="63" column="51" lean-forward="true" selection-start-line="63" selection-start-column="51" selection-end-line="63" selection-end-column="51" />
+            <state relative-caret-position="270">
+              <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -29,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Options.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Options.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Options.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="638">
-              <caret line="157" column="0" lean-forward="true" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
+            <state relative-caret-position="-1170">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -44,8 +45,8 @@
       <file leaf-file-name="Truck.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Truck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+            <state relative-caret-position="666">
+              <caret line="52" column="16" lean-forward="true" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -88,8 +89,8 @@
       <file leaf-file-name="Car.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Car.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="15" column="46" lean-forward="true" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+            <state relative-caret-position="72">
+              <caret line="4" column="35" lean-forward="false" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -105,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RandomGenerator.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RandomGenerator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/RandomGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="24" column="49" lean-forward="false" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
+            <state relative-caret-position="144">
+              <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -142,10 +143,10 @@
         <option value="$PROJECT_DIR$/src/AlertBox.java" />
         <option value="$PROJECT_DIR$/src/Vehicle.java" />
         <option value="$PROJECT_DIR$/src/Gui.java" />
-        <option value="$PROJECT_DIR$/src/Car.java" />
-        <option value="$PROJECT_DIR$/src/Race.java" />
         <option value="$PROJECT_DIR$/src/Motorcycle.java" />
         <option value="$PROJECT_DIR$/src/Truck.java" />
+        <option value="$PROJECT_DIR$/src/Car.java" />
+        <option value="$PROJECT_DIR$/src/Race.java" />
         <option value="$PROJECT_DIR$/src/RandomGenerator.java" />
         <option value="$PROJECT_DIR$/src/Options.java" />
       </list>
@@ -392,12 +393,12 @@
       <workItem from="1510360777345" duration="135000" />
       <workItem from="1510405782732" duration="10826000" />
       <workItem from="1510448314533" duration="3669000" />
-      <workItem from="1510491084608" duration="8353000" />
+      <workItem from="1510491084608" duration="10405000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60005000" />
+    <option name="totallyTimeSpent" value="62057000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="324" y="-4" width="1857" height="1092" extended-state="6" />
@@ -820,24 +821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Race.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="63" column="51" lean-forward="true" selection-start-line="63" selection-start-column="51" selection-end-line="63" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Car.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="15" column="46" lean-forward="true" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AlertBox.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -864,18 +847,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RandomGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/Truck.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="24" column="49" lean-forward="false" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
-          <folding />
+        <state relative-caret-position="666">
+          <caret line="52" column="16" lean-forward="true" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Truck.java">
+    <entry file="file://$PROJECT_DIR$/src/Race.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+        <state relative-caret-position="270">
+          <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -884,11 +869,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Options.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="157" column="0" lean-forward="true" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
+        <state relative-caret-position="-1170">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Car.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="35" lean-forward="false" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RandomGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
