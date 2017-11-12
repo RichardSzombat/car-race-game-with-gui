@@ -61,6 +61,6 @@ public class Race {
                     vehicle.get(i).getDistanceTraveled()));
 
         }
-        System.out.println(RandomGenerator.chanceOfRain);
+        System.out.println(Motorcycle.normalSpeed);
     }
 }

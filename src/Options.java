@@ -37,11 +37,11 @@ public class Options {
 
         BorderPane borderPane = new BorderPane();
 
-
         HBox content = new HBox(10);
 
         //Race pane
         VBox race = new VBox(10);
+        race.setAlignment(Pos.TOP_CENTER);
         race.setPadding(new Insets(10,10,10,20));
         race.setPrefWidth(200);
         Label raceLabel = new Label();
@@ -62,8 +62,6 @@ public class Options {
         setSlider(hours,hoursLabel,Options.racingHours,1,100);
 
 
-
-
         race.getChildren().addAll(raceLabel,isRaining,chanceOfRain,chanceOfRainLabel,racingHours,hours,hoursLabel);
         raceLabel.setAlignment(Pos.CENTER);
 
@@ -72,6 +70,7 @@ public class Options {
         //TODO static variables in Options instead RandomGenerator
         //Car pane
         VBox car = new VBox(10);
+        car.setAlignment(Pos.TOP_CENTER);
         car.setPadding(new Insets(10,10,10,20));
         car.setPrefWidth(200);
         Label carLabel = new Label();
@@ -79,23 +78,41 @@ public class Options {
 
         //Car limit chance
         Label setCarLimit = new Label("Chance to limit speed");
+        setCarLimit.setAlignment(Pos.CENTER);
         Slider limitChance = new Slider();
         Label limitChanceLabel = new Label(Integer.toString(RandomGenerator.carLimitChance));
         setSlider(limitChance,limitChanceLabel,RandomGenerator.carLimitChance,0,100);
 
+        //Car limited speed
+        Label carLimitedSpeed = new Label("Limited car speed");
+        Slider limitedSpeed = new Slider();
+        Label limitedSpeedLabel = new Label(Integer.toString(Car.getSpeedLimit()));
+        setSlider(limitedSpeed,limitedSpeedLabel,Car.getSpeedLimit(),0,79);
 
-        car.getChildren().addAll(carLabel,setCarLimit,limitChance,limitChanceLabel);
+
+        car.getChildren().addAll(carLabel,setCarLimit,limitChance,limitChanceLabel,carLimitedSpeed,limitedSpeed,limitedSpeedLabel);
 
         //Motorcycle pane
         VBox motorcycle = new VBox(10);
+        motorcycle.setAlignment(Pos.TOP_CENTER);
         motorcycle.setPadding(new Insets(10,10,10,20));
         motorcycle.setPrefWidth(200);
         Label motorcycleLabel = new Label();
         motorcycleLabel.setText("Motorcycle");
-        motorcycle.getChildren().add(motorcycleLabel);
+
+        //Motorcycle normal speed
+        Label setMotoNormalSpeed = new Label("Set normal speed");
+        Slider motoNormalSpeed = new Slider();
+        Label motoNormalSpeedLabel = new Label(Integer.toString(Motorcycle.normalSpeed));
+        setSlider(motoNormalSpeed,motoNormalSpeedLabel,Motorcycle.normalSpeed,0,100);
+
+
+
+        motorcycle.getChildren().addAll(motorcycleLabel,setMotoNormalSpeed,motoNormalSpeed,motoNormalSpeedLabel);
 
         //Truck pane
         VBox truck = new VBox(10);
+        truck.setAlignment(Pos.TOP_CENTER);
         truck.setPadding(new Insets(10,10,10,20));
         truck.setPrefWidth(200);
         Label truckLabel = new Label();
@@ -111,13 +128,14 @@ public class Options {
             RandomGenerator.chanceOfRain = Integer.parseInt(chanceOfRainLabel.getText());
             Options.racingHours = Integer.parseInt(hoursLabel.getText());
             RandomGenerator.carLimitChance = Integer.parseInt(limitChanceLabel.getText());
+            Car.setSpeedLimit(Integer.parseInt(limitedSpeedLabel.getText()));
+            Motorcycle.normalSpeed = Integer.parseInt(motoNormalSpeedLabel.getText());
         });
         saveButton.setPadding(new Insets(10,10,10,10));
         bottomMenu.getChildren().addAll(saveButton);
 
 
         content.getChildren().addAll(race,car,motorcycle,truck,bottomMenu);
-
         borderPane.setCenter(content);
         borderPane.setBottom(bottomMenu);
 

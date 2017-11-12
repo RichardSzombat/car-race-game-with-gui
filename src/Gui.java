@@ -86,7 +86,7 @@ public class Gui extends Application {
                 if (validateInput(numberOfVehicles)) {
                     race.setNumberOfVehicles(Integer.parseInt(numberOfVehicles.getText()));
                     race.createVehicles(carSelect.isSelected(), motoSelect.isSelected(), truckSelect.isSelected());
-                    Car.setSpeedLimit(70);
+
                     race.simulateRace();
                     race.printResults();
                     table.setItems(race.getVehicles());

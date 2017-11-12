@@ -1,7 +1,7 @@
 
 
 public class Car extends Vehicle {
-    private static int speedLimit;
+    private static int speedLimit = 70;
 
     public static int getSpeedLimit() {
         return Car.speedLimit;
