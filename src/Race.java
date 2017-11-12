@@ -11,6 +11,9 @@ public class Race {
     private Motorcycle motorcycle;
     private Truck truck;
     private int numberOfVehicles;
+    public static final int CHANCE_OF_RAIN = 30;
+    public static int racingHours = 50;
+    static int chanceOfRain = 30;
 
     public List<Vehicle> getVehicle() {
         return vehicle;
@@ -47,7 +50,7 @@ public class Race {
     public void simulateRace() {
 
         for (int i = 0; i < vehicle.size(); i++) {
-            for (int hour = 0; hour < 50; hour++) {
+            for (int hour = 0; hour < Race.racingHours; hour++) {
                 RandomGenerator.isRaining();
                 this.vehicle.get(i).moveForAnHour();
             }
@@ -61,5 +64,6 @@ public class Race {
                     vehicle.get(i).getDistanceTraveled()));
 
         }
+        System.out.println(Motorcycle.normalSpeed);
     }
 }

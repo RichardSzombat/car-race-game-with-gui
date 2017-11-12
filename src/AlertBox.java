@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class AlertBox {
 
-    public static void display(String title, String message) {
+    public static void display(String title, String message,String buttonText) {
         Stage window = new Stage();
 
         window.initModality(Modality.APPLICATION_MODAL);
@@ -18,7 +18,7 @@ public class AlertBox {
         Label label = new Label();
         label.setText(message);
 
-        Button closeButton = new Button("Close the window");
+        Button closeButton = new Button(buttonText);
         closeButton.setOnAction(event -> window.close());
 
         VBox layout = new VBox(10);

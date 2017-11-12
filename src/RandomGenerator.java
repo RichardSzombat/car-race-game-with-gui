@@ -4,6 +4,9 @@ import java.util.Random;
 
 public class RandomGenerator {
 
+
+
+
     private RandomGenerator(){
 
     }
@@ -14,24 +17,24 @@ public class RandomGenerator {
 
     static void isRaining(){
         int raining = new Random().nextInt(100)+1;
-        Race.isRaining = raining <= 30;
+        Race.isRaining = raining <= Race.chanceOfRain;
     }
 
     static boolean truckBreakdown(){
         int breakdown = new Random().nextInt(100)+1;
-        return breakdown < 6;
+        return breakdown <= Truck.breakdownChance;
 
     }
 
-    static boolean carBreakDown(){
-        int carBreakDown = new Random().nextInt(100)+1;
-        return carBreakDown <= 35;
+    static boolean carLimitation(){
+        int chance = new Random().nextInt(100)+1;
+        return chance <= Car.carLimitChance;
     }
 
 
     static int carNormalSpeed(){
 
-        return new Random().nextInt(30)+80;
+        return new Random().nextInt(Car.maxSpeed-Car.minSpeed)+Car.minSpeed;
     }
 
     static int randomTruckName(){

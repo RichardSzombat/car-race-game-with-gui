@@ -12,6 +12,7 @@
     -fx-background-color: #00487C;
     -fx-text-fill: #F5F0F6;
     -fx-background-radius: 15;
+    -fx-min-width: 100;
 }
 
 .table-view {

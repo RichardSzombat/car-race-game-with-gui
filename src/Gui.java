@@ -40,11 +40,19 @@ public class Gui extends Application {
         TextField numberOfVehicles = new TextField();
         numberOfVehicles.setPromptText("Only integers are accepted!");
 
+        Button options = new Button();
+        options.setText("Options");
+        options.setOnAction(event -> Options.display());
+
+        Button exit = new Button("Exit");
+        exit.setOnAction(event -> window.close());
+
 
         VBox leftMenu = new VBox(10);
         leftMenu.setPadding(new Insets(20, 20, 20, 20));
 
-        leftMenu.getChildren().addAll(startNewRace, carSelect, motoSelect, truckSelect,numberLabel, numberOfVehicles);
+        leftMenu.getChildren().addAll(startNewRace, carSelect, motoSelect, truckSelect,numberLabel,
+                                        numberOfVehicles,options,exit);
 
 
         BorderPane borderPane = new BorderPane();
@@ -82,16 +90,16 @@ public class Gui extends Application {
                 if (validateInput(numberOfVehicles)) {
                     race.setNumberOfVehicles(Integer.parseInt(numberOfVehicles.getText()));
                     race.createVehicles(carSelect.isSelected(), motoSelect.isSelected(), truckSelect.isSelected());
-                    Car.setSpeedLimit(70);
+
                     race.simulateRace();
                     race.printResults();
                     table.setItems(race.getVehicles());
                 } else {
-                    AlertBox.display("Invalid input", "Enter an integer between 1 - 999");
+                    AlertBox.display("Invalid input", "Enter an integer between 1 - 999","OK");
                     numberOfVehicles.clear();
                 }
             } else {
-                AlertBox.display("Nothing selected", "Select something");
+                AlertBox.display("Nothing selected", "Select something","OK");
 
             }
         });
