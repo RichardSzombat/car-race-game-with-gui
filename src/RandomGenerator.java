@@ -4,9 +4,6 @@ import java.util.Random;
 
 public class RandomGenerator {
 
-
-
-
     private RandomGenerator(){
 
     }
@@ -54,16 +51,6 @@ public class RandomGenerator {
         }while (firstName==lastName);
 
         return String.format("%s %s", carNames[firstName], carNames[lastName]);
-
-
-
-
-
-
-
-
-
-
 
     }
 }
